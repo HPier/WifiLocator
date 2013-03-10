@@ -57,8 +57,12 @@ namespace WindowsFormsApplication1
             }
             foreach (WlanClient.WlanInterface wlanIface in client.Interfaces)
             {
+
                 Wlan.WlanAvailableNetwork[] networks = wlanIface.GetAvailableNetworkList(0);
-              
+
+                Wlan.WlanAvailableNetwork ava = new NativeWifi.Wlan.WlanAvailableNetwork();
+                
+
                 Wlan.WlanBssEntry[] wlanBssEntries = wlanIface.GetNetworkBssList();
                 foreach (Wlan.WlanBssEntry wlanBssEntry in wlanBssEntries)
                 {
@@ -73,7 +77,7 @@ namespace WindowsFormsApplication1
                         str[i] = macAddr[i].ToString("x2");
                     }
                     string mac = string.Join("", str);
-                    mac = " wlanBssEntry: " + wlanBssEntry.dot11Ssid.ToString() + " dot11BssPhyType: " + wlanBssEntry.dot11BssType.ToString() + " dot11BssPhyType: " + wlanBssEntry.dot11BssPhyType.ToString() + " frequenza khz " + wlanBssEntry.chCenterFrequency.ToString() + " capabilityInformation " + wlanBssEntry.capabilityInformation.ToString() + " beaconPeriod: " + wlanBssEntry.beaconPeriod.ToString() + " MAC: " + mac + "\r\n";
+                    mac = " wlanBssEntry: " + wlanBssEntry.dot11Ssid.ToString() + " dot11BssPhyType: " + wlanBssEntry.dot11BssPhyType.ToString() + " frequenza khz " + wlanBssEntry.chCenterFrequency.ToString() + " capabilityInformation " + wlanBssEntry.capabilityInformation.ToString() + " beaconPeriod: " + wlanBssEntry.beaconPeriod.ToString() + " MAC: " + mac + "\r\n";
                      
                     System.IO.File.AppendAllText("catture.txt",mac);
                    // MessageBox.Show(mac);
